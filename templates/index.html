@@ -1,0 +1,164 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nomzie Realty</title>
+    <link rel="icon" type="Image\x-icon" href="https://res.cloudinary.com/lbsccl1c/image/upload/v1793297422/Logo.jpg"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container nav">
+        <div class="brand">
+          <img src="{{ logo_url }}" alt="Nomzie Realty logo" />
+        </div>
+        <nav class="menu">
+          <a href="#home">Home</a>
+          <a href="#about">About</a>
+          <a href="#properties">Properties</a>
+          <a href="#services">Services</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <a class="nav-cta" href="https://wa.me/2348035225761?text=Hello%20Nomzie%20Realty%2C%20I%20would%20like%20to%20book%20an%20inquiry%20session.%20Please%20share%20your%20availability." target="_blank" rel="noopener noreferrer">Book a Session</a>
+      </div>
+    </header>
+
+    <main>
+      <section id="home" class="hero">
+        <div class="container hero-inner">
+          <div class="hero-copy">
+            <p class="eyebrow">Smart property choices</p>
+            <h1>Find the place that fits your future.</h1>
+            <p class="subtitle">
+              Discover homes, estates, and investment-ready properties crafted for comfort,
+              growth, and long-term value.
+            </p>
+            <div class="hero-actions">
+              <a class="primary-btn" href="#properties">Explore Listings</a>
+              <a class="secondary-btn" href="#about">Learn More</a>
+            </div>
+            <ul class="stats">
+              <li><strong>120+</strong><span>Luxury listings</span></li>
+              <li><strong>18 yrs</strong><span>Market expertise</span></li>
+              <li><strong>98%</strong><span>Client satisfaction</span></li>
+            </ul>
+          </div>
+
+          <div class="hero-visual">
+            <div class="image-card main-card">
+              <img src="https://res.cloudinary.com/lbsccl1c/image/upload/v1793297377/Insignia.jpg" alt="Insignia Properties flyer" />
+            </div>
+            <div class="floating-badge">
+              <span>Featured Property</span>
+              <strong>Insignia Estates</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" class="about section">
+        <div class="container split">
+          <div class="section-heading">
+            <p class="eyebrow">Why choose us</p>
+            <h2>Trusted guidance for modern property investment.</h2>
+          </div>
+          <div class="about-text">
+            <p>
+              We connect buyers, investors, and families with premium real estate opportunities
+              across fast-growing locations. From strategic land acquisition to luxury homes and
+              ready-to-move-in estates, we help you buy with confidence.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="properties" class="section properties-section">
+        <div class="container">
+          <div class="section-header">
+            <div>
+              <p class="eyebrow">Featured properties</p>
+              <h2>Handpicked homes and estates</h2>
+            </div>
+            <a href="#contact" class="link-btn">Request a property list</a>
+          </div>
+
+          <div class="card-grid">
+            {% for property in properties %}
+              <article class="property-card">
+                <div class="property-image">
+                  <img src="{{ property.image }}" alt="{{ property.name }}" />
+                  <span class="badge">{{ property.tag }}</span>
+                </div>
+                <div class="property-body">
+                  <p class="meta">{{ property.type }}</p>
+                  <h3>{{ property.name }}</h3>
+                  <p class="location">{{ property.location }}</p>
+                  {% if property.slug == 'insignia' or property.slug == 'meridiana-gold-fold' or property.slug == 'meridiana-blue-oak' or property.slug == 'meridiana-ketu' or property.slug == 'rivard-properties' %}
+                    <a class="learn-more-btn" href="{% url 'property_detail' property.slug %}">Learn more</a>
+                  {% endif %}
+                </div>
+              </article>
+            {% endfor %}
+          </div>
+        </div>
+      </section>
+
+      <section id="services" class="section services-section">
+        <div class="container">
+          <p class="eyebrow">Our services</p>
+          <h2>Complete support from search to signing.</h2>
+          <div class="service-grid">
+            <div class="service">
+              <a href="https://wa.me/2348035225761?text=Hello%20Nomzie%20Realty%2C%20I%20want%20to%20ask%20about%20Property%20Sales." target="_blank" rel="noopener noreferrer">
+                <h3>Property Sales</h3>
+              </a>
+              <p>Curated homes and estates for buyers seeking value, comfort, and long-term growth.</p>
+            </div>
+            <div class="service">
+              <a href="https://wa.me/2348035225761?text=Hello%20Nomzie%20Realty%2C%20I%20want%20to%20ask%20about%20Real%20Estate%20Advisory." target="_blank" rel="noopener noreferrer">
+                <h3>Real Estate Advisory</h3>
+              </a>
+              <p>Strategic guidance for investors looking to capitalize on emerging opportunities.</p>
+            </div>
+            <div class="service">
+              <a href="https://wa.me/2348035225761?text=Hello%20Nomzie%20Realty%2C%20I%20want%20to%20ask%20about%20Investment%20Planning." target="_blank" rel="noopener noreferrer">
+                <h3>Investment Planning</h3>
+              </a>
+              <p>Practical property planning tailored to your budget, goals, and preferred location.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer id="contact" class="footer">
+      <div class="container footer-inner">
+        <div>
+          <img class="footer-logo" src="{{ logo_url }}" alt="Nomzie Realty logo" />
+        </div>
+        <div class="footer-copy">
+          <p>Let’s help you discover the right property investment.</p>
+        </div>
+        <a href="mailto:hello@nomzie.com" class="primary-btn">hello@nomzie.com</a>
+      </div>
+    </footer>
+
+    <a
+      class="whatsapp-float"
+      href="https://wa.me/2348035225761?text=Hello%20Nomzie%20Realty%2C%20I%20want%20to%20know%20more%20about%20your%20properties."
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Chat on WhatsApp"
+      title="Chat on WhatsApp"
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M20.52 3.48A11.84 11.84 0 0 0 12.06 0C5.46 0 .1 5.36.1 11.96c0 2.11.55 4.17 1.59 5.97L0 24l6.2-1.63A11.96 11.96 0 0 0 12.06 24c6.6 0 11.95-5.36 11.95-11.96 0-3.19-1.24-6.2-3.49-8.56ZM12.06 21.8c-1.8 0-3.57-.48-5.1-1.38l-.36-.22-3.68.97 1-3.58-.24-.37A9.95 9.95 0 0 1 2.08 12c0-5.52 4.46-9.99 9.98-9.99 2.67 0 5.17 1.04 7.05 2.92a10.1 10.1 0 0 1 2.93 7.07c0 5.52-4.46 9.98-9.98 9.98Zm5.47-7.46c-.3-.15-1.79-.88-2.07-1-.28-.12-.48-.18-.68.18-.2.36-.78 1-.96 1.19-.18.18-.35.2-.65.07-.3-.15-1.27-.47-2.42-1.49-.89-.79-1.49-1.77-1.67-2.06-.17-.3-.02-.46.13-.61.14-.14.3-.35.45-.53.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.08-.15-.68-1.64-.94-2.24-.25-.58-.5-.5-.68-.5h-.58c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.49s1.07 2.88 1.22 3.08c.15.2 2.09 3.2 5.07 4.49.71.3 1.26.48 1.7.62.71.23 1.36.2 1.88.12.57-.08 1.79-.73 2.04-1.44.25-.71.25-1.33.18-1.46-.07-.13-.28-.2-.58-.35Z"/>
+      </svg>
+    </a>
+  </body>
+</html>

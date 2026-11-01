@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ property.title }} | Nomzie Realty</title>
+    <link rel="icon" type="image/x-icon" href="https://res.cloudinary.com/lbsccl1c/image/upload/v1793297422/Logo.jpg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+  </head>
+  <body class="property-page-body">
+    <header class="topbar">
+      <div class="container nav">
+        <div class="brand">
+          <img src="{{ logo_url }}" alt="Nomzie Realty logo" />
+        </div>
+        <nav class="menu">
+          <a href="/">Home</a>
+          <a href="/#properties">Properties</a>
+          <a href="/#contact">Contact</a>
+        </nav>
+        <a class="nav-cta" href="https://wa.me/2348035225769?text=Hello%20Nomzie%20Realty%2C%20I%20would%20like%20to%20book%20a%20session%20for%20{{ property.title|urlencode }}.%20Please%20share%20your%20availability." target="_blank" rel="noopener noreferrer">Book a Session</a>
+      </div>
+    </header>
+
+    <main class="property-detail-page">
+      <section class="property-detail-hero">
+        <div class="container detail-layout">
+          <div class="detail-copy">
+            <p class="eyebrow">Exclusive listing</p>
+            <h1>{{ property.title }}</h1>
+            <p class="subtitle">{{ property.subtitle }}</p>
+            <p class="lead">{{ property.intro }}</p>
+          </div>
+          <div class="detail-visual">
+            <img src="{{ property.hero_image }}" alt="{{ property.title }} property flyer" />
+          </div>
+        </div>
+      </section>
+
+      <section class="property-detail-content section">
+        <div class="container detail-content-box">
+          <div class="detail-description">
+            {% for line in property.body %}
+              <p>{{ line }}</p>
+            {% endfor %}
+          </div>
+
+          {% for section in property.sections %}
+            <section class="detail-list-section">
+              <h2>{{ section.heading }}</h2>
+              <ul>
+                {% for item in section.items %}
+                  <li>{{ item }}</li>
+                {% endfor %}
+              </ul>
+            </section>
+          {% endfor %}
+
+          <div class="detail-actions">
+            <a class="primary-btn" href="https://wa.me/2348035225769?text=Hello%20Nomzie%20Realty%2C%20I%20want%20to%20know%20more%20about%20{{ property.title }}." target="_blank" rel="noopener noreferrer">Learn more</a>
+            <a class="secondary-btn" href="/">Back to listings</a>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
