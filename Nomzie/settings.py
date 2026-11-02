@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-uxlz38dj5d)9gu^ode#+1vpcl4lbg@7y*5c-mg(!mnvxc*4k4i
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['nomzie-realty.onrender.com']
 
 
 # Application definition
