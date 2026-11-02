@@ -1,3 +1,2 @@
-"WhiteNoise"
-"Render"
-"wsgi"
+whitenoise
+wsgi
